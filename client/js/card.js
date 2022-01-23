@@ -1,13 +1,13 @@
 // KLASA KANBAN CARD
-function Card(_id, name, id, order) {
+function Card(cardId, name, colId, order) {
 
-  this.id = _id;
+  this.cardId = cardId;
   this.name = name || "No card name given";
-  this.colId = id;
+  this.colId = colId;
   this.order = order;
   this.element = generateTemplate("card-template", { description: this.name }, "li");
 
-console.log("OLD:" + oldIndex);
+//console.log("OLD index:" + oldIndex);
   //console.log(column_id)
 
 
@@ -47,19 +47,18 @@ console.log("OLD:" + oldIndex);
     data = {
       cards: {
         name: this.name,
-        _id: this.id,
+        _id: this.cardId,
         order: this.order
       },
       colId: colId,
       targetColId: targetColId,
-      col_id: this.col_id,
       oldIndex: oldIndex,
       newIndex: newIndex
     };
 
     this.modifyCard(data);
   };
-  console.log("I: " + oldIndex);
+  //console.log("old index: " + oldIndex);
 }
 
 Card.prototype = {
@@ -67,13 +66,13 @@ Card.prototype = {
     const data = {
       colId: this.colId
     }
-    fetch(baseUrl + "/card/" + this.id, { method: "DELETE", headers: myHeaders, body: JSON.stringify(data) })
+    fetch(baseUrl + "/card/" + this.cardId, { method: "DELETE", headers: myHeaders, body: JSON.stringify(data) })
       .then(resp => resp.json())
       .then(resp => this.element.parentNode.removeChild(this.element))
       .catch(error => console.log("Błąd: " + error));
   },
   modifyCard: function (data) {
-    fetch(baseUrl + "/card/" + this.id, { method: "PATCH", headers: myHeaders, body: JSON.stringify(data) })
+    fetch(baseUrl + "/card/" + this.cardId, { method: "PATCH", headers: myHeaders, body: JSON.stringify(data) })
       .then(resp => resp.json())
       .catch(error => console.log(error));
   }

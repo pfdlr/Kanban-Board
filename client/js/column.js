@@ -39,7 +39,7 @@ function Column(id, name) {
         })
           .then((res) => res.json())
           .then((resp) => {
-            var card = new Card(resp.id, cardName);
+            var card = new Card(resp.cardId, cardName, resp.colId, resp.order);
             this.addCard(card);
           })
           .catch((error) =>  console.log(error));
