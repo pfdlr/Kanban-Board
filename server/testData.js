@@ -45,42 +45,6 @@ const loadTestData = async () => {
 
     ];
 
-
-    /* const loadTestData = async () => {
-        const board = {
-            id: "1",
-            name: "board",
-            columns: [
-                {
-                    id: "2",
-                    name: "kolumna",
-                    cards: [
-                        {
-                            id: "3",
-                            order: "4",
-                            name: "jaks nazwa"
-                        },
-                        {
-                            id: "6",
-                            order: "7",
-                            name: "jaks nazwa"
-                        }
-                    ]
-                },
-                {
-                    id: "4",
-                    name: "kolumna2",
-                    cards: [
-                        {
-                            id: "5",
-                            order: "4",
-                            name: "ee jaks nazwa"
-                        }
-                    ]
-                }
-            ]
-        }; */
-    // console.log(board);
     try {
         let counter = await Task.countDocuments();
         if (counter === 0) {
@@ -92,6 +56,5 @@ const loadTestData = async () => {
         console.log('Couldn\'t load test data', err);
     }
 }
-
 
 module.exports = loadTestData;

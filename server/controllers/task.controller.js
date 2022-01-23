@@ -111,44 +111,12 @@ exports.modifyCard = async function (req, res, next) {
     } else {
       console.log("BŁĄD".red);
     }
-
   }
   catch (err) {
     res.status(500).json(`Błąd: ${err}`)
   }
 }
 /*
-// get single Post
-exports.getSinglePost = async (req, res) => {
-
-  try {
-      res.status(200).json(await Post.find({id: req.params.id}));
-    } catch(err) {
-      res.status(500).json(err);
-    }
-
-};
-
-// add new post
-exports.addPost = async function (req, res) {
-
-  try {
-    const { title, author, content } = req.body;
-
-    let newTask = new Task();
-    newTask.title = title;
-    newTask.author = author;
-    newTask.content = content;
-    newTask.id = uuid();
-
-    postSaved = await newTask.save();
-    res.status(200).json(postSaved);
-
-  } catch(err) {
-    res.status(500).json(err);
-  }
-
-};
 
 // get posts by range
 exports.getPostsByRange = async function (req, res) {
