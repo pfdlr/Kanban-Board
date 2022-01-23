@@ -1,0 +1,42 @@
+{
+  "name": "npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:html",
+    "test:html": "globstar nu-html-checker *.html",
+    "init-project": "yarn install && npm-run-all init:*",
+    "init:dirs": "mkdirp sass css vendor images js",
+    "init:files": "touch README.md index.html sass/style.scss js/script.js",
+    "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -o .gitignore",
+    "build": "npm-run-all test build:*",
+    "build:clean": "rimraf docs sass/*.css css/*.map",
+    "build:sass": "node-sass --output-style compressed -o css sass",
+    "build:autoprefixer": "autoprefixer-cli css/style.css",
+    "build-dev:sass": "node-sass --output-style expanded --source-map true -o css sass",
+    "build:image": "imagemin images/* --out-dir=images",
+    "build:docs": "bash docs.sh",
+    "watch": "npm-run-all -p watch:*",
+    "watch:browsersync": "browser-sync start --server --files 'css/*.css, *.html'",
+    "watch:sassprefixer": "onchange sass/*.scss -- npm-run-all build-dev:sass build:autoprefixer"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer-cli": "^1.0.0",
+    "browser-sync": "^2.26.5",
+    "globstar": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "nu-html-checker": "^0.1.0",
+    "onchange": "^5.2.0",
+    "rimraf": "^2.6.3"
+  },
+  "dependencies": {
+    "imagemin-cli": "^4.0.1",
+    "lodash": "^4.17.14"
+  }
+}
