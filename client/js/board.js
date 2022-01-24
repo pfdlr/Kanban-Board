@@ -49,9 +49,6 @@ function initSortable(id) {
     onAdd: function (evt) {
       targetColId = evt.to.id;
       colId = evt.from.id;
-      oldIndex = evt.oldIndex;
-      newIndex = evt.newIndex;
-      console.log(oldIndex +" >> " + newIndex);
     }
 
   });

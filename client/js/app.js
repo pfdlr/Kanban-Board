@@ -39,8 +39,12 @@ function setupColumns(columns) {
 }
 //set up cards from API data
 function setupCards(col, cards) {
+	cards.sort((a, b) => (a.order < b.order ? -1 : Number(a.order > b.order)));
 	cards.forEach((card) => {
     var cardObj = new Card(card._id, card.name, col.id, card.order);
   	col.addCard(cardObj);
 	});
 }
+/* const setupCards = (col, cards) => {
+	cards.sort((a, b) =>) { a.order - b.order}
+} */
